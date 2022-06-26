@@ -1,4 +1,4 @@
-# Flyweight - Structural (Estrutural)
+# Flyweight
 
 ## Intenção
 
