@@ -7,9 +7,9 @@ class Flyweight():
     def __init__(self, est_compartilhado: str) -> None:
         self._est_compartilhado = est_compartilhado
 
-    def operation(self, unique_state: str) -> None:
+    def operation(self, est_unico: str) -> None:
         s = json.dumps(self._est_compartilhado)
-        u = json.dumps(unique_state)
+        u = json.dumps(est_unico)
         print(f"Flyweight: Exibindo dados compartilhados: ({s}). E dados únicos: ({u}).", end="")
 
 
@@ -17,8 +17,8 @@ class FlyweightFactory():
     
     _flyweights: Dict[str, Flyweight] = {}
 
-    def __init__(self, initial_flyweights: Dict) -> None:
-        for state in initial_flyweights:
+    def __init__(self, flyweight_inicial: Dict) -> None:
+        for state in flyweight_inicial:
             self._flyweights[self.get_key(state)] = Flyweight(state)
 
     def get_key(self, state: Dict) -> str:
@@ -39,36 +39,36 @@ class FlyweightFactory():
 
         return self._flyweights[key]
 
-    def list_flyweights(self) -> None:
+    def lista_flyweights(self) -> None:
         count = len(self._flyweights)
         print(f"FlyweightFactory: Eu tenho {count} flyweights:")
         print("\n".join(map(str, self._flyweights.keys())), end="")
 
 
-def adiciona_carro(
-    factory: FlyweightFactory, marca: str, modelo: str, cor: str
+def adiciona_endereco(
+    factory: FlyweightFactory, rua: str, bairro: str, num: str
 ) -> None:
-    print("\n\nClient: Adicionando carro na base de dados.")
-    factory.get_flyweight([marca, modelo, cor])
-
+    print("\n\nClient: Adicionando endereco na base de dados.")
+    factory.get_flyweight([rua, bairro, num])
+    # O código do cliente armazena ou calcula o estado extrínseco e passa aos métodos do flyweight.
 
 if __name__ == "__main__":
 
     factory = FlyweightFactory([
-        ["Fiat", "Uno", "preto"],
-        ["Fiat", "Camaro", "amarelo"],
-        ["Nissan", "March", "preto"],
-        ["Nissan", "Kicks", "branco"],
-        ["Honda", "Civic", "preto"],
+        ["Rua Bento Martins", "Centro Histórico", "528"],
+        ["Rua Cel. Genuino", "Centro", "152"],
+        ["Rua Fernando Machado", "Centro", "897"],
+        ["Av. Ipiranga", "Jardim Botanico", "1008"],
+        ["Rua dos Andradas", "Centro Histórico", "856"],
     ])
 
     factory.list_flyweights()
 
-    adiciona_carro(
-        factory, "Nissan", "Kicks", "branco")
+    adiciona_endereco(
+        factory, "Rua Bento Martins", "Centro Histórico", "722")
 
-    adiciona_carro(
-        factory, "Honda", "Civic", "preto")
+    adiciona_endereco(
+        factory, "Rua Fernando Machado", "Centro", "897")
 
     print("\n")
 

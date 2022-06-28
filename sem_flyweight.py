@@ -1,32 +1,32 @@
 
-def list_cars():
+def lista_endereco():
     count = len(factory)
     print(f"FlyweightFactory: Eu tenho {count} flyweights:\n")
     print(factory)
 
 
 
-def add_car_to_police_database( marca: str, modelo: str, cor: str):
-    factory.append([marca, modelo, cor])
+def adiciona_endereco( rua: str, bairro: str, num: str):
+    factory.append([rua, bairro, num])
     
 
 if __name__ == "__main__":
 
     factory = ([
-        ["Fiat", "Uno", "preto"],
-        ["Fiat", "Camaro", "amarelo"],
-        ["Nissan", "March", "preto"],
-        ["Nissan", "Kicks", "branco"],
-        ["Honda", "Civic", "preto"],
+        ["Rua Bento Martins", "Centro Histórico", "528"],
+        ["Rua Cel. Genuino", "Centro", "152"],
+        ["Rua Fernando Machado", "Centro", "897"],
+        ["Av. Ipiranga", "Jardim Botanico", "1008"],
+        ["Rua dos Andradas", "Centro Histórico", "856"],
     ])
 
-    list_cars()
+    lista_endereco()
 
-    add_car_to_police_database(
-        "Nissan", "Kicks", "branco")
+    adiciona_endereco(
+        "Rua Bento Martins", "Centro Histórico", "722")
 
-    add_car_to_police_database(
-        "Honda", "Civic", "preto")
+    adiciona_endereco(
+        "Rua Fernando Machado", "Centro", "897")
 
     print("\n")
-    list_cars()
+    lista_endereco()
